@@ -1,1 +1,7 @@
 Debug
+
+#to ignore file unnecesary of C++
+
+src/*.o
+src/*.dev
+src/*.layout

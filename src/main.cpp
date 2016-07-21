@@ -6,5 +6,5 @@ int main()
 {
 	Menu menu;
 	menu.show();
-	return EXIT_SUCCESS;
+	return 0;
 }

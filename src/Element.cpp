@@ -9,7 +9,8 @@
 #include <cstdlib>
 using namespace std;
 
-Element::Element(string name): _next(NULL), _name(name)
+Element::Element(string name, string number): _next(NULL), _name(name), _number(number)
 {
-
+   
 }
+

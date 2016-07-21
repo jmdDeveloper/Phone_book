@@ -11,11 +11,14 @@
 class Element
 {
 	public:
-		Element(std::string name);
-
+		Element(std::string name, std::string number);
+        Element* getNext()      { return _next;   }
+        std::string getName()   { return _name;   }
+		std::string getNumber() { return _number; }
 	private:
 		Element* _next;
 		std::string _name;
+		std::string _number;
 		//This means that List can access to all private members of this class
 		friend class List;
 };

@@ -14,7 +14,9 @@ class List
 		List();
 		void add(Element* element);
 		void remove(int index);
-		void modify(int index, std::string name);
+		void modify(int index, std::string name, std::string number);
+		Element* getFirst()    { return _first;	}
+	
 	private:
 		Element* _first;
 		Element* _last;

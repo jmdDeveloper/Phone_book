@@ -9,6 +9,8 @@
 #include <iostream>
 using namespace std;
 
+List* myContactList = new List();
+
 Menu::Menu()
 {
 
@@ -28,6 +30,7 @@ void Menu::pause()
 	#ifdef _WIN32
 	system("pause");
 	#else
+	cout<<endl;
 	system("read -n1 -r -p \"Press any key to continue...\" key");
 	#endif
 }
@@ -72,25 +75,86 @@ void Menu::routeAction(int option)
 void Menu::listContacts()
 {
 	//TODO: Implement this
-	cout << "Implement  Menu::listContacts" << endl;
+	//cout << "Implement  Menu::listContacts" << endl;
+	Element* j = myContactList->getFirst();
+	if(j)// if isn't empty or if isn't null
+	{
+		cout<<"      All contacts: "<<endl;
+		for(int x=1; j ; x++, j = j->getNext())
+		{
+			cout<<endl<<x<<". "<<j->getName()<<endl;//showing all contacts
+			cout<<"   "<<j->getNumber()<<endl;
+		}
+		cout<<endl;
+	}else{ //if is null
+		cout<<endl<<"         List of contact empty."<<endl<<endl;
+	}
+	
 }
 
 void Menu::addContacts()
 {
 	//TODO: Implement this
-	cout << "Implement  Menu::addContacts" << endl;
+	//cout << "Implement  Menu::addContacts" << endl;
+	string name = "";
+	string number = "";
+	cout<<endl;
+	cout<<"       Please, entry the name of the contact: ";
+	cin>>name;
+	cout<<"       Please, entry the number of the contact: ";
+	cin>>number;
+	Element* newContact = new Element(name, number);// creating the new Contact
+	myContactList->add(newContact);// adding the new contact to my list of contact
 }
 
 void Menu::removeContacts()
 {
 	//TODO: Implement this
-	cout << "Implement  Menu::removeContacts" << endl;
+	//cout << "Implement  Menu::removeContacts" << endl;
+	listContacts();// show all contact
+	if(myContactList->getFirst())
+	{
+		int index = 0;
+		cout<<"     Please, entry the number of the contac to delete: ";
+		cin>>index;
+		myContactList->remove(index);// removin one contact
+	}
+	
 }
 
 void Menu::modifyContacts()
 {
 	//TODO: Implement this
-	cout << "Implement  Menu::modifyContacts" << endl;
+	//cout << "Implement  Menu::modifyContacts" << endl;
+	listContacts();//show all  contact
+	if(myContactList->getFirst())//id there is a contact
+	{
+		int index = 0;
+		int desicion = 0;
+		string name = "";
+		string number = "";
+		
+		cout<<"     Please, entry the number of the contac to modify: ";
+		cin>>index;
+		
+		cout<<"      Please, entry the new name: ";
+		cin>>name;
+		cout<<"     Do you want modify the number too? \n \t 1. Yes\n \t 2. No \t"<<endl;
+		cin>>desicion;
+		switch(desicion)
+		{
+		  case 1:
+		  	cout<<"      Please, entry the new number: ";
+		  	cin>>number;
+		   break;
+		  case 2:
+		 	
+		   break;		  
+		  default: cout<<"\t Opcion Invalid."<<endl;	
+		}
+		
+		myContactList->modify(index,name,number);// modifying the contact
+	}
 }
 
 void Menu::show()
